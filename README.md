@@ -1,0 +1,2 @@
+# azureWebApp
+For Azure practicals
