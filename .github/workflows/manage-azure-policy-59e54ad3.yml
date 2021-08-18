@@ -1,0 +1,58 @@
+name: manage-azure-policy-59e54ad3
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'policies/SamsVMNamingpolicy_ffdd464e-b445-487a-bbb4-711be2c7c4fd/**'
+#      - 'policies/_Preview_Keys_using_elliptic_curve_cryptography_should_have_the_specified_curve_names_ff25f3c8-b739-4538-9d07-3d6d25cfb255/**'
+#      - 'policies/Audit_virtual_machines_without_disaster_recovery_configured_0015ea4d-51ff-4ce3-8d8c-f3f8f0179a56/**'
+#      - 'policies/Vulnerability_assessment_should_be_enabled_on_your_Synapse_workspaces_0049a6b3-a662-4f3e-8635-39cf44ace45a/**'
+#      - 'policies/SQL_Server_Integration_Services_integration_runtimes_on_Azure_Data_Factory_should_be_joined_to_a_virtual_network_0088bc63-6dee-4a9c-9d29-91cfdc848952/**'
+#      - 'policies/Private_endpoint_connections_on_Batch_accounts_should_be_enabled_009a0c92-f5b4-4776-9b66-4ed2b4775563/**'
+#      - 'policies/Azure_Backup_should_be_enabled_for_Virtual_Machines_013e242c-8828-4970-87b3-ab247555486d/**'
+#      - 'policies/Azure_Kubernetes_Service_Private_Clusters_should_be_enabled_040732e8-d947-40b8-95d6-854c95024bf8/**'
+#      - 'policies/Cognitive_Services_accounts_should_restrict_network_access_037eea7a-bd0a-46c5-9a66-03aea78705d3/**'
+#      - 'policies/Audit_Linux_machines_that_have_the_specified_applications_installed_0447bc18-e2f7-4c0d-aa20-bff034275be1/**'
+#      - 'policies/Storage_account_keys_should_not_be_expired_044985bb-afe1-42cd-8a36-9d5d42424537/**'
+#      - 'policies/Azure_Cosmos_DB_allowed_locations_0473574d-2d43-4217-aefe-941fcdf7e684/**'
+#      - 'policies/SQL_managed_instances_should_use_customer-managed_keys_to_encrypt_data_at_rest_048248b0-55cd-46da-b1ff-39efd52db260/**'
+#      - 'policies/_Preview_Network_traffic_data_collection_agent_should_be_installed_on_Linux_virtual_machines_04c4380f-3fae-46e8-96c9-30193528f602/**'
+#      - .github/workflows/manage-azure-policy-59e54ad3.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_59e54ad3}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/SamsVMNamingpolicy_ffdd464e-b445-487a-bbb4-711be2c7c4fd/**
+          policies/_Preview_Keys_using_elliptic_curve_cryptography_should_have_the_specified_curve_names_ff25f3c8-b739-4538-9d07-3d6d25cfb255/**
+          policies/Audit_virtual_machines_without_disaster_recovery_configured_0015ea4d-51ff-4ce3-8d8c-f3f8f0179a56/**
+          policies/Vulnerability_assessment_should_be_enabled_on_your_Synapse_workspaces_0049a6b3-a662-4f3e-8635-39cf44ace45a/**
+          policies/SQL_Server_Integration_Services_integration_runtimes_on_Azure_Data_Factory_should_be_joined_to_a_virtual_network_0088bc63-6dee-4a9c-9d29-91cfdc848952/**
+          policies/Private_endpoint_connections_on_Batch_accounts_should_be_enabled_009a0c92-f5b4-4776-9b66-4ed2b4775563/**
+          policies/Azure_Backup_should_be_enabled_for_Virtual_Machines_013e242c-8828-4970-87b3-ab247555486d/**
+          policies/Azure_Kubernetes_Service_Private_Clusters_should_be_enabled_040732e8-d947-40b8-95d6-854c95024bf8/**
+          policies/Cognitive_Services_accounts_should_restrict_network_access_037eea7a-bd0a-46c5-9a66-03aea78705d3/**
+          policies/Audit_Linux_machines_that_have_the_specified_applications_installed_0447bc18-e2f7-4c0d-aa20-bff034275be1/**
+          policies/Storage_account_keys_should_not_be_expired_044985bb-afe1-42cd-8a36-9d5d42424537/**
+          policies/Azure_Cosmos_DB_allowed_locations_0473574d-2d43-4217-aefe-941fcdf7e684/**
+          policies/SQL_managed_instances_should_use_customer-managed_keys_to_encrypt_data_at_rest_048248b0-55cd-46da-b1ff-39efd52db260/**
+          policies/_Preview_Network_traffic_data_collection_agent_should_be_installed_on_Linux_virtual_machines_04c4380f-3fae-46e8-96c9-30193528f602/**

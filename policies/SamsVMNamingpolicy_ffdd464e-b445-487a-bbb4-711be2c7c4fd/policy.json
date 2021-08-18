@@ -1,0 +1,36 @@
+{
+ "properties": {
+  "displayName": "SamsVMNamingpolicy",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Testing Policy -  name of VMs should start with \"sam\"",
+  "metadata": {
+   "category": "Compute",
+   "createdBy": "5bbb3124-e07d-4a3c-b80b-a93d02624521",
+   "createdOn": "2021-08-16T14:56:16.9998075Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Compute/virtualMachines"
+     },
+     {
+      "field": "Microsoft.Compute/virtualMachines/osProfile.computerName",
+      "like": "sam*"
+     }
+    ]
+   },
+   "then": {
+    "effect": "audit"
+   }
+  }
+ },
+ "id": "/subscriptions/575ecc86-b9b8-410d-a733-43e5c806b430/providers/Microsoft.Authorization/policyDefinitions/ffdd464e-b445-487a-bbb4-711be2c7c4fd",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "ffdd464e-b445-487a-bbb4-711be2c7c4fd"
+}
