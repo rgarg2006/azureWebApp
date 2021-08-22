@@ -1,0 +1,52 @@
+name: manage-azure-policy-01750b34
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'Azure/policies/policies/Virtual_machines_should_encrypt_temp_disks,_caches,_and_data_flows_between_Compute_and_Storage_resources_0961003e-5a0a-4549-abde-af6a37f2724d/**'
+#      - 'Azure/policies/policies/_Preview_Windows_machines_should_meet_requirements_of_the_Azure_compute_security_baseline_72650e9f-97bc-4b2a-ab5f-9781a9fcecbc/**'
+#      - 'Azure/policies/policies/Configure_Machine_Learning_computes_to_disable_local_authentication_methods_a6f9a2d0-cff7-4855-83ad-4cd750666512/**'
+#      - 'Azure/policies/policies/Machine_Learning_computes_should_have_local_authentication_methods_disabled_e96a9a5f-07ca-471b-9bc5-6a0f33cbd68f/**'
+#      - 'Azure/policies/policies/_Preview_Linux_machines_should_meet_requirements_for_the_Azure_compute_security_baseline_fc9b3da7-8347-4380-8e70-0a0361d8dedd/**'
+#      - 'Azure/policies/policies/_Preview_Configure_log_filter_expressions_and_datastore_to_be_used_for_full_logs_for_specified_Azure_Machine_Learning_computes_1d413020-63de-11ea-bc55-0242ac130003/**'
+#      - 'Azure/policies/policies/_Preview_Configure_an_approval_endpoint_called_prior_to_jobs_running_for_specified_Azure_Machine_Learning_computes_3948394e-63de-11ea-bc55-0242ac130003/**'
+#      - 'Azure/policies/policies/_Preview_Configure_allowed_module_authors_for_specified_Azure_Machine_Learning_computes_53c70b02-63dd-11ea-bc55-0242ac130003/**'
+#      - 'Azure/policies/policies/_Preview_Configure_allowed_registries_for_specified_Azure_Machine_Learning_computes_5853517a-63de-11ea-bc55-0242ac130003/**'
+#      - 'Azure/policies/policies/_Preview_Configure_code_signing_for_training_code_for_specified_Azure_Machine_Learning_computes_6a6f7384-63de-11ea-bc55-0242ac130003/**'
+#      - 'Azure/policies/policies/_Preview_Configure_allowed_Python_packages_for_specified_Azure_Machine_Learning_computes_77eeea86-7e81-4a7d-9067-de844d096752/**'
+#      - .github/workflows/manage-azure-policy-01750b34.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_01750b34}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          Azure/policies/policies/Virtual_machines_should_encrypt_temp_disks,_caches,_and_data_flows_between_Compute_and_Storage_resources_0961003e-5a0a-4549-abde-af6a37f2724d/**
+          Azure/policies/policies/_Preview_Windows_machines_should_meet_requirements_of_the_Azure_compute_security_baseline_72650e9f-97bc-4b2a-ab5f-9781a9fcecbc/**
+          Azure/policies/policies/Configure_Machine_Learning_computes_to_disable_local_authentication_methods_a6f9a2d0-cff7-4855-83ad-4cd750666512/**
+          Azure/policies/policies/Machine_Learning_computes_should_have_local_authentication_methods_disabled_e96a9a5f-07ca-471b-9bc5-6a0f33cbd68f/**
+          Azure/policies/policies/_Preview_Linux_machines_should_meet_requirements_for_the_Azure_compute_security_baseline_fc9b3da7-8347-4380-8e70-0a0361d8dedd/**
+          Azure/policies/policies/_Preview_Configure_log_filter_expressions_and_datastore_to_be_used_for_full_logs_for_specified_Azure_Machine_Learning_computes_1d413020-63de-11ea-bc55-0242ac130003/**
+          Azure/policies/policies/_Preview_Configure_an_approval_endpoint_called_prior_to_jobs_running_for_specified_Azure_Machine_Learning_computes_3948394e-63de-11ea-bc55-0242ac130003/**
+          Azure/policies/policies/_Preview_Configure_allowed_module_authors_for_specified_Azure_Machine_Learning_computes_53c70b02-63dd-11ea-bc55-0242ac130003/**
+          Azure/policies/policies/_Preview_Configure_allowed_registries_for_specified_Azure_Machine_Learning_computes_5853517a-63de-11ea-bc55-0242ac130003/**
+          Azure/policies/policies/_Preview_Configure_code_signing_for_training_code_for_specified_Azure_Machine_Learning_computes_6a6f7384-63de-11ea-bc55-0242ac130003/**
+          Azure/policies/policies/_Preview_Configure_allowed_Python_packages_for_specified_Azure_Machine_Learning_computes_77eeea86-7e81-4a7d-9067-de844d096752/**
